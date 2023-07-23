@@ -29,9 +29,13 @@ def imprimeItemVenda(um_item_venda, produtos):
 
 # questao 7
 def novoProduto(lista_produtos):
-    nome_produto = input('Digite o nome do produto: ')
-    valor_produto = input('Digite o valor do produto: ')
-    lista_produtos.append((nome_produto, valor_produto))
+    nome_produto = None
+    while nome_produto != '':
+        nome_produto = input('Digite o nome do produto: ')
+        if nome_produto == '':
+            break
+        valor_produto = input('Digite o valor do produto: ')
+        lista_produtos.append((nome_produto, valor_produto))
     return lista_produtos
 
 # questao 8
@@ -59,7 +63,7 @@ def showMenu():
 def calcularTotal(lista_item_venda, produtos):
     total = 0
     for item in lista_item_venda:
-        total = total + int(produtos[item[0]][1]) * int(item[1])
+        total = total + float(produtos[item[0]][1]) * int(item[1])
     return total
 
 # questao 10 nota fiscal
@@ -96,17 +100,20 @@ def procuraProduto(nome, produtos):
 
 # questao 11 realizar VENDA
 def realizarVenda(item_venda, produtos):
-    nome_produto = input('Digite o nome do prod para add a venda')
-    index_prod_enc = procuraProduto(nome_produto, produtos)
+    nome_produto = None
+    while nome_produto != '':
+        nome_produto = input('Nome do prod a ser adicionado a venda: ')
+        if nome_produto == '':
+            break
+        index_prod_enc = procuraProduto(nome_produto, produtos)
 
-    if index_prod_enc < 0:
-        print('PRODUTO NAO ENCONTRADO')
-        return item_venda
-    else:
-        quantidade = input('Qual a quantidade do produto: ')
-        item_venda.append((index_prod_enc,quantidade))
-        return item_venda
+        if index_prod_enc < 0:
+            print('PRODUTO NAO ENCONTRADO')
+        else:
+            quantidade = input('Qual a quantidade do produto: ')
+            item_venda.append((index_prod_enc,quantidade))
 
+    return item_venda
 def main():
     produtos = []
     item_venda = []

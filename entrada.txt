@@ -1,0 +1,13 @@
+1
+banana
+7
+1
+morango
+8
+2
+banana
+1
+morango
+2
+
+0
